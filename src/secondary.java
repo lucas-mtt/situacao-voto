@@ -6,16 +6,20 @@ public class secondary {
     public String[] nomesNV = new String[tamanhoVetor];
     public String[] nomesFV = new String[tamanhoVetor];
     public String[] nomesPV = new String[tamanhoVetor];
+    public String[] nomesIV = new String[tamanhoVetor];
     public Integer[] idadeNV = new Integer[tamanhoVetor];
     public Integer[] idadeFV = new Integer[tamanhoVetor];
     public Integer[] idadePV = new Integer[tamanhoVetor];
+    public Integer[] idadeIV = new Integer[tamanhoVetor];
     public Integer qtdRegistros;
-    Integer contNomeNV = 0;
-    Integer contNomeFV = 0;
-    Integer contNomePV = 0;
-    Integer contIdadeNV = 0;
-    Integer contIdadeFV = 0;
-    Integer contIdadePV = 0;
+    public Integer contNomeNV = 0;
+    public Integer contNomeFV = 0;
+    public Integer contNomePV = 0;
+    public Integer contNomeIV = 0;
+    public Integer contIdadeNV = 0;
+    public Integer contIdadeFV = 0;
+    public Integer contIdadePV = 0;
+    public Integer contIdadeIV = 0;
     public String nome;
     public Integer anoNsc;
     public Calendar calendario = Calendar.getInstance();
@@ -26,7 +30,12 @@ public class secondary {
     }
 
     public String calcSituacao() {
-        if (calcIdade() < 16) {
+        if (calcIdade() < 0){
+            nomesIV[contNomeIV] = nome;
+            idadeIV[contIdadeIV] = calcIdade();
+            ++contNomeIV;
+            ++contIdadeIV;
+        } else if (calcIdade() >= 0 && calcIdade() < 16) {
             nomesNV[contNomeNV] = nome;
             idadeNV[contIdadeNV] = calcIdade();
             ++contNomeNV;
@@ -45,6 +54,15 @@ public class secondary {
             System.out.print("\nAlgo de errado aconteceu\n");
         }
         return "\nAlgo de errado aconteceu\n";
+    }
+
+    public void invalidoVoto(){
+        System.out.print("Usuários de Voto Inválido\n");
+        for (int i=0; i<nomesIV.length; i++){
+            if (nomesIV[i] != null){
+                System.out.print("\t"+ (i+1)+ ". Nome..: "+ nomesIV[i]+ "\n\t   Idade.: "+ idadeIV[i]+ "\n");
+            }
+        };
     }
 
     public void obrigatorioVoto(){
