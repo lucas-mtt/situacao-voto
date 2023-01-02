@@ -34,6 +34,9 @@ public class Program {
         System.out.println();
         sc.obrigatorioVoto();
 
+        System.out.println();
+        sc.invalidoVoto();
+
         input.close();
 
     }
